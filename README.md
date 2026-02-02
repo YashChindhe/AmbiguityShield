@@ -1,7 +1,9 @@
 # AmbiguityShield: VLA Action-Performer Auditor
 
 ### **Project Goal**
-This project provides an automated quality gate for robotics data. When a performer (human hand or robot) records a task, we need to know: **"Is this action clear enough for a model to learn from?"** **AmbiguityShield** acts as a supervisor. It evaluates the performer's action against the instruction. If the action is confusing with respect to instruction, the system **rejects** the annotation so it can be recorded again. Suppose we have 10 manual annotators working for us then the annotation manager need not evaluate each and every video with its annotation. This tool can help them to simplify their work. If 1000 videos are annotated every day and passed through this tool, and out of them if 150 fail then the manager needs to be concerned only about those 150 instead of 1000, which drastically reduces human fatigue and error.
+This project provides an automated quality gate for robotics data. When a performer (human hand or robot) records a task, we need to know: **"Is this action clear enough for a model to learn from?"** **AmbiguityShield** acts as a supervisor. It evaluates the performer's action against the instruction. If the action is confusing with respect to instruction, the system **rejects** the annotation so it can be recorded again. 
+
+Suppose we have 10 manual annotators working for us then the annotation manager need not evaluate each and every video with its annotation. This tool can help them to simplify their work. If 1000 videos are annotated every day and passed through this tool, and out of them if 150 fail then the manager needs to be concerned only about those 150 instead of 1000, which drastically reduces human fatigue and error.
 
 ---
 
@@ -22,22 +24,22 @@ The system evaluates the performer using a frame-by-frame analysis:
 
 ## 2. The "Action Zone" Logic
 
-The audit focuses only on the **middle 60%** of the video (the Action Zone). This ensures the "Pass/Reject" verdict is based on the actual task execution, ignoring the setup and reset time at the beginning and end of the recording.
+The audit focuses only on the **middle 60%** of the video (the Action Zone). This ensures the "Pass/Reject" verdict is based on the actual task execution, ignoring the setup and reset time at the beginning and end of the recording. For eg. the robot might not have entered video for few frames initially or might have completed the action and left the frame at last and the video is still recording.
 
 ---
 
 ## 3. Results & Thresholds
 
-We used 4 specific sample videos recorded by myself in the `/data` folder to establish these thresholds:
+I have used 4 specific sample videos recorded by myself in the `/data` folder to establish these thresholds:
 
 | Sample Video | Scene Problem | Avg Entropy | Peak Spike | Audit Result |
 | :--- | :--- | :--- | :--- | :--- |
-| **Baseline Clear** | None (Clear action) | **< 2.0** | **< 2.0** | **✅ PASS** |
-| **Spatial Ambiguity** | Two identical targets | **> 2.0** | **> 3.0** | **🚩 REJECT** |
-| **Semantic Ambiguity** | Wrong object targeted | **> 2.0** | **> 3.0** | **🚩 REJECT** |
-| **Cluttered Scene** | High visual noise | **> 2.0** | **> 3.0** | **🚩 REJECT** |
+| **Baseline Clear** | None (Clear action) | **< 2.0** | **< 2.0** | **PASS** |
+| **Spatial Ambiguity** | Two identical targets | **> 2.0** | **> 3.0** | **REJECT** |
+| **Semantic Ambiguity** | Wrong object targeted | **> 2.0** | **> 3.0** | **REJECT** |
+| **Cluttered Scene** | High visual noise | **> 2.0** | **> 3.0** | **REJECT** |
 
-Due to GPU limits, the project could not be evaluated extensively. Currently am scaling down the OpenVLA model and then using it. If you have access to better GPU's then please evaluate it on the 16bit model instead of 4bit one.
+Due to GPU limits, the project could not be evaluated extensively. Also, currently am scaling down the OpenVLA model and then using it. If you have access to better GPU's then please evaluate it on the 16bit model instead of 4bit one and test for multiple videos.
 
 ---
 
