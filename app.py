@@ -54,9 +54,19 @@ if uploaded_video and instruction and 'model' in st.session_state:
         # 4. Final Verdict Display
         max_e = max(entropy_values)
         st.subheader("Analysis Results")
+
+        # Sidebar slider for the user
+        threshold = st.sidebar.slider(
+        label="Ambiguity Sensitivity",
+        min_value=0.0,
+        max_value=5.5, # Theoretical max for 256 bins is ~5.5
+        value=2.5,     # The default starting point
+        step=0.1,      # This allows for 2.1, 2.2, 2.3, etc.
+        help="Lower values make the shield stricter. Higher values allow more uncertainty."
+        )
         
         # Threshold for Ambiguity
-        if max_e > 2.5: 
+        if max_e > threshold: 
             st.error(f"AMBIGUITY DETECTED (Max Entropy: {max_e:.2f})")
             st.write("The model is confused. Instruction needs more detail.")
         else:
