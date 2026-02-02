@@ -55,7 +55,8 @@ if uploaded_video and instruction and 'model' in st.session_state:
         max_e = max(entropy_values)
         st.subheader("Analysis Results")
         
-        if max_e > 2.5: # Threshold for 'Ambiguity'
+        # Threshold for Ambiguity
+        if max_e > 2.5: 
             st.error(f"AMBIGUITY DETECTED (Max Entropy: {max_e:.2f})")
             st.write("The model is confused. Instruction needs more detail.")
         else:
