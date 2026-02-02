@@ -1,8 +1,32 @@
-transformers>=4.40.0
-bitsandbytes>=0.43.0
-accelerate>=0.29.0
-torch>=2.2.0
-streamlit
-opencv-python
-pillow
-numpy
+# Core Deep Learning Framework (Stable CUDA 12.1/12.4)
+torch==2.5.1
+torchvision==0.20.1
+torchaudio==2.5.1
+torchao==0.6.1
+torchdata==0.9.0
+torchsummary==1.5.1
+torchtune==0.4.0
+
+# VLA & Transformer Essentials
+transformers==4.45.2
+accelerate==1.1.0
+bitsandbytes==0.44.1
+tokenizers==0.20.3
+timm==0.9.16
+sentence-transformers==3.3.1
+
+# Web Interface & UI
+streamlit==1.41.1
+
+# Data Science & Analysis
+pandas==2.2.2
+pandas-datareader==0.10.0
+pandas-gbq==0.30.0
+pandas-stubs==2.2.2.240909
+sklearn-pandas==2.2.0
+geopandas==1.0.1
+
+# Computer Vision
+opencv-python==4.10.0.84
+opencv-contrib-python==4.10.0.84
+opencv-python-headless==4.10.0.84
