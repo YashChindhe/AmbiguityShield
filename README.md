@@ -34,10 +34,10 @@ I have used 4 specific sample videos recorded by myself in the `/data` folder to
 
 | Sample Video | Scene Problem | Avg Entropy | Peak Spike | Audit Result |
 | :--- | :--- | :--- | :--- | :--- |
-| **Baseline Clear** | None (Clear action) | **< 2.0** | **< 2.0** | **PASS** |
-| **Spatial Ambiguity** | Two identical targets | **> 2.0** | **> 3.0** | **REJECT** |
-| **Semantic Ambiguity** | Wrong object targeted | **> 2.0** | **> 3.0** | **REJECT** |
-| **Cluttered Scene** | High visual noise | **> 2.0** | **> 3.0** | **REJECT** |
+| **Baseline Clear** | None (Clear action) | **< 1.2** | **~ 2.0** | **PASS** |
+| **Spatial Ambiguity** | Two identical targets | **> 1.2** | **> 2.5** | **REJECT** |
+| **Semantic Ambiguity** | Wrong object targeted | **> 1.2** | **> 2.5** | **REJECT** |
+| **Cluttered Scene** | High visual noise | **> 1.2** | **> 2.5** | **REJECT** |
 
 Due to GPU limits, the project could not be evaluated extensively. Also, currently am scaling down the OpenVLA model and then using it. If you have access to better GPU's then please evaluate it on the 16bit model instead of 4bit one and test for multiple videos.
 
